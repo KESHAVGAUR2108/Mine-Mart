@@ -1,4 +1,3 @@
-const fs = require("fs");
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -6,9 +5,6 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const mongoDBStore = require("connect-mongodb-session")(session);
 const multer = require("multer");
-// const helmet = require("helmet");
-// const compression = require("compression");
-// const morgan = require("morgan");
 
 const errorController = require("./controllers/errors");
 const User = require("./models/user");
@@ -24,18 +20,6 @@ app.set("views", "views");
 
 const csrfProtection = csrf();
 
-const fileFilter = (req, file, cb) => {
-	if (
-		file.mimetype === "image/png" ||
-		file.mimetype === "image/jpg" ||
-		file.mimetype === "image/jpeg"
-	) {
-		cb(null, true);
-	} else {
-		cb(null, false);
-	}
-};
-
 const fileStorage = multer.diskStorage({
 	destination: (req, file, cb) => {
 		cb(null, "images");
@@ -45,26 +29,20 @@ const fileStorage = multer.diskStorage({
 	},
 });
 
-const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.nvhk4c5.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}&authSource=admin`;
+const MONGODB_URI =
+	"mongodb+srv://keshavgaur679:4sHjzKcutf9EpZ08@cluster0.nvhk4c5.mongodb.net/mine-mart-Mongoose";
+// console.log(process.env.MONGO_USER);
+// console.log(process.env.MONGO_PASSWORD);
+// console.log(process.env.MONGO_DEFAULT_DATABASE);
+// const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.nvhk4c5.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}&authSource=admin`;
 
 const store = new mongoDBStore({
 	uri: MONGODB_URI,
 	collection: "sessions",
 });
 
-// const activeLogStream = fs.createWriteStream(
-// 	path.join(__dirname, "access.log"),
-// 	{ flags: "a" }
-// );
-
-// app.use(helmet());
-// app.use(compression());
-// app.use(morgan("combined", { stream: activeLogStream }));
-
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(
-	multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
-);
+app.use(multer({ storage: fileStorage }).single("image"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(
@@ -118,7 +96,7 @@ app.use((error, req, res, next) => {
 });
 
 mongoose.connect(MONGODB_URI).then(() => {
-	app.listen(process.env.PORT || 3000);
+	app.listen(3000);
 });
 
 module.exports = app;
