@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs') %>
+<body>
+	<%- include('../includes/navigation.ejs') %>
+
+	<main class="logIn container my-5">
+		<% if(error.length > 0){ %>
+		<div class="shadow alert alert-danger" role="alert"><%= error %></div>
+		<% } else if(success){ %>
+		<div class="shadow alert alert-success" role="alert"><%= success %></div>
+		<% } %>
+		<form action="/reset" method="POST">
+			<label class="form-label" for="email"><b>Email</b></label>
+			<input
+				class="form-control"
+				type="email"
+				name="email"
+				id="email"
+				required
+			/>
+			<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+			<button class="logInButton btn btn-primary my-3 mt-4" type="submit">
+				Reset Password
+			</button>
+		</form>
+	</main>
+	<%- include('../includes/end.ejs') %>
+

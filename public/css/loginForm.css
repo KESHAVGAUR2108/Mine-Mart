@@ -1,0 +1,9 @@
+.logIn {
+	width: 30% !important ;
+}
+
+.logInButton,
+.signUpButton,
+.btn.btn-success {
+	width: 100%;
+}

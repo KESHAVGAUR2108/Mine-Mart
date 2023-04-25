@@ -1,0 +1,19 @@
+<ul class="pagination position-relative bottom-0 justify-content-center mt-5">
+    <% if(hasPreviousPage){ %>
+    <li class="page-item">
+        <a class="page-link" href="/?page=<%= previousPage %>">Previous</a>
+    </li>
+    <% } %>
+    <li class="page-item active">
+        <a class="page-link" href="/?page=<%=currentPage%>"><%=currentPage%></a>
+    </li>
+    <%if(hasNextPage){%>
+    <li class="page-item">
+        <a class="page-link" href="/?page=<%=nextPage%>"><%=nextPage%></a>
+    </li>
+    <%}%> <%if(nextPage2 <= lastPage){%>
+    <li class="page-item">
+        <a class="page-link" href="/?page=<%=nextPage2%>">Next</a>
+    </li>
+    <%}%>
+</ul>

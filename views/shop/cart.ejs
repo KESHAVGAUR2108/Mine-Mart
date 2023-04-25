@@ -1,0 +1,59 @@
+<%- include('../includes/head.ejs') %>
+
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <main class="mt-3">
+        <% if(prod.length>0) { %>
+            <div class="container-fluid">
+                <div class="text-center row gx-3 gy-3">
+                    <% for(let p of prod) { %>
+                        <div class="col col-sm-4 col-6 col-xl-3">
+                            <div class="rounded shadow">
+                                <h5><%= p.productId.title %></h5>
+                                <img src="/<%= p.productId.imageUrl %>" alt="<%= p.title %>" width="100%"
+                                height="220px">
+                                <div>
+                                    <h5>Price : 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" fill="currentColor" class="bi bi-currency-rupee" viewBox="0 0 16 16">
+                                            <path d="M4 3.06h2.726c1.22 0 2.12.575 2.325 1.724H4v1.051h5.051C8.855 7.001 8 7.558 6.788 7.558H4v1.317L8.437 14h2.11L6.095 8.884h.855c2.316-.018 3.465-1.476 3.688-3.049H12V4.784h-1.345c-.08-.778-.357-1.335-.793-1.732H12V2H4v1.06Z"/>
+                                            </svg><%= p.productId.price %> </h5>
+                                    <h6 class="d-flex justify-content-center gap-3">Qty :
+                                        <form action="/order" method="POST">
+                                            <button class="btn btn-warning btn-sm" type="submit">-</button>
+                                            <input name="op" type="hidden" value="dec">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                                            <input name="prodId" type="hidden" value="<%= p.productId._id %>">
+                                        </form>
+                                        <%= p.quantity %>
+                                        <form action="/order" method="POST">
+                                            <input name="prodId" type="hidden" value="<%= p.productId._id %>">
+                                            <input name="op" type="hidden" value="inc">
+                                            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                                            <button class="btn btn-warning btn-sm" type="submit">+</button>
+                                        </form>
+                                    </h6>
+                                    <form class="mt-3" action="/cart" method="POST">
+                                        <input type="hidden" name="prodId" value="<%= p.productId._id %>">
+                                        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                                        <button type="submit" class="btn btn-danger mb-3">Remove</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                <!-- <form action="/add-order" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <button type="submit" class="btn btn-success mt-3 mb-3 px-3" style="width: 100%;">Order Now!</button>
+                </form> -->
+                <a href="/checkout">
+                    <button class="btn btn-success mt-3 mb-3 px-3" style="width: 100%;">Order Now!</button>
+                </a>
+            </div>
+        <% } else { %>
+            <h1>Cart is empty!!!</h1>
+        <% } %>
+    </main>
+<%- include('../includes/end.ejs') %>
