@@ -7,3 +7,63 @@
 .btn.btn-success {
 	width: 100%;
 }
+
+@media screen and (max-width: 650px) {
+	.logIn {
+		width: 80% !important;
+	}
+}
+
+@media screen and (max-width: 433px) {
+	* {
+		font-size: small;
+	}
+
+	.special-container {
+		display: flex !important;
+		flex-direction: column;
+	}
+
+	.special-container .btn {
+		width: auto;
+		margin: auto;
+	}
+
+	.details-btn {
+		margin-bottom: 0px !important;
+	}
+
+	img {
+		display: block;
+		width: 100% !important;
+		height: auto !important;
+		margin: auto;
+	}
+}
+
+@media screen and (min-width: 575px) and (max-width: 650px) {
+	* {
+		font-size: small;
+	}
+
+	.special-container {
+		display: flex !important;
+		flex-direction: column;
+	}
+
+	.special-container .btn {
+		width: auto;
+		margin: auto;
+	}
+
+	.details-btn {
+		margin-bottom: 0px !important;
+	}
+
+	img {
+		display: block;
+		width: 100% !important;
+		height: auto !important;
+		margin: auto;
+	}
+}

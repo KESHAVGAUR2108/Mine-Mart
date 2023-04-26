@@ -31,10 +31,6 @@ const fileStorage = multer.diskStorage({
 
 const MONGODB_URI =
 	"mongodb+srv://keshavgaur679:4sHjzKcutf9EpZ08@cluster0.nvhk4c5.mongodb.net/mine-mart-Mongoose";
-// console.log(process.env.MONGO_USER);
-// console.log(process.env.MONGO_PASSWORD);
-// console.log(process.env.MONGO_DEFAULT_DATABASE);
-// const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.nvhk4c5.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}&authSource=admin`;
 
 const store = new mongoDBStore({
 	uri: MONGODB_URI,

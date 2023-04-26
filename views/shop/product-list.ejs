@@ -34,11 +34,11 @@
 						</b>
 
 						<p><%= product.description %></p>
-						<div class="d-flex justify-content-center gap-3">
+						<div class="special-container d-flex justify-content-center gap-3">
 							<input type="hidden" name="_csrf" value="<%= csrfToken %>" />
 							<a
 								href="/product/<%= product._id %>"
-								class="btn btn-outline-primary mb-3"
+								class="btn btn-outline-primary details-btn mb-3"
 							>
 								Details
 							</a>
@@ -49,16 +49,10 @@
 				<% } %>
 			</div>
 		</div>
-		<%- include('../includes/pagination.ejs'),
-			{	
-				hasPreviousPage: hasPreviousPage,
-				currentPage: currentPage,
-				hasNextPage: hasNextPage,
-				nextPage: nextPage,
-				nextPage2: nextPage2,
-				lastPage: lastPage
-			}%>
-		<% } else {%>
+		<%- include('../includes/pagination.ejs'), { hasPreviousPage:
+		hasPreviousPage, currentPage: currentPage, hasNextPage: hasNextPage,
+		nextPage: nextPage, nextPage2: nextPage2, lastPage: lastPage }%> <% } else
+		{%>
 		<h1>No Products!</h1>
 		<%}%>
 	</main>

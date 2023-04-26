@@ -199,24 +199,6 @@ exports.getCheckout = (req, res, next) => {
 				totalPrice += p.productId.price * p.quantity;
 			});
 
-			// {
-			// 	name: 'T-shirt',
-			// 	description: 'Comfortable cotton t-shirt',
-			// 	images: ['https://example.com/t-shirt.png'],
-			// 	amount: 2000,
-			// 	currency: 'usd',
-			// 	price_data: {
-			// 	  currency: 'usd',
-			// 	  unit_amount: 2000,
-			// 	  product_data: {
-			// 		name: 'T-shirt',
-			// 		description: 'Comfortable cotton t-shirt',
-			// 		images: ['https://example.com/t-shirt.png'],
-			// 	  },
-			// 	},
-			// 	quantity: 1,
-			//   }
-
 			return stripe.checkout.sessions.create({
 				payment_method_types: ["card"],
 				line_items: products.map((p) => {
