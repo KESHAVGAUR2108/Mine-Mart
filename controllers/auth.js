@@ -208,7 +208,7 @@ exports.postReset = (req, res, next) => {
 						from: "keshavgaur679@gmail.com",
 						to: email,
 						subject: "Reset Password",
-						html: `<h2>You requested password reset.</h2><h4>If the request is made by you then <a href='http://localhost:3000/reset/${token}'>click Here</a> to reset password.`,
+						html: `<h2>You requested password reset.</h2><h4>If the request is made by you then <a href='https://mine-mart.onrender.com/reset/${token}'>click Here</a> to reset password.`,
 					})
 					.then(() => {
 						console.log("Password reset confirmation mail is delivered.");
